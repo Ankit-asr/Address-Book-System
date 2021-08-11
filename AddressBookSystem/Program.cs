@@ -14,6 +14,7 @@ namespace Address_Book_System
             //constants
             const int EXIT = 0, ADD_NEW_CONTACTS = 1, EDIT_CONTACTS = 2, DELETE_CONTACTS = 3, ALL_CONTACTS = 5, ADD_MULTIPLE_RECORDS = 4;
             List<Contacts> listContacts = new List<Contacts>();
+            Dictionary<string, List<Contacts>> contactsUniqueList = new Dictionary<string, List<Contacts>>();
             while (true)
             {
                 Console.WriteLine("Press 1 : Add new contacts to Address Book");
@@ -42,22 +43,23 @@ namespace Address_Book_System
                             Email = email
                         };
                         listContacts.Add(contacts);
+                        contactsUniqueList.Add(contacts.FirstName, listContacts);
                         break;
                     case EDIT_CONTACTS:
                         Contacts contact = new Contacts();
-                        contact.CheckContactAvaible(listContacts);
+                        contact.CheckContactAvaible(contactsUniqueList);
                         break;
                     case ALL_CONTACTS:
                         Contacts contactAllRecord = new Contacts();
-                        contactAllRecord.ShowAllRecords(listContacts);
+                        contactAllRecord.ShowAllRecords(contactsUniqueList);
                         break;
                     case DELETE_CONTACTS:
                         Contacts contectDelete = new Contacts();
-                        contectDelete.DeleteContacts(listContacts);
+                        contectDelete.DeleteContacts(contactsUniqueList);
                         break;
                     case ADD_MULTIPLE_RECORDS:
                         Contacts contactAddMulRecords = new Contacts();
-                        contactAddMulRecords.AddMultiplePerson(listContacts);
+                        contactAddMulRecords.AddMultiplePerson(contactsUniqueList);
                         break;
                     default:
                         Console.WriteLine("Enter a right choice");
