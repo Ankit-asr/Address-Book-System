@@ -15,10 +15,5 @@ namespace AddressBookSystem
 		public long PhoneNumber { get; set; }
 		public String Email { get; set; }
 
-		public void Contacts_Of_People()
-		{
-
-
-		}
 	}
 }
