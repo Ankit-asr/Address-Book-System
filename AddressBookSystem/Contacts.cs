@@ -14,12 +14,13 @@ namespace AddressBookSystem
         public int Zip { get; set; }
         public long PhoneNumber { get; set; }
         public String Email { get; set; }
+        String firstName;
+        bool checkContacts;
 
         public void CheckContactAvailable(List<Contacts> listContacts)
         {
-            bool checkContacts = false;
+            checkContacts = false;
             Console.WriteLine("Enter first name");
-            String firstName;
             firstName = Console.ReadLine();
             foreach (Contacts contacts in listContacts)
             {
@@ -41,13 +42,33 @@ namespace AddressBookSystem
                     contacts.PhoneNumber = Convert.ToInt64(Console.ReadLine());
                     Console.WriteLine("Enter email");
                     contacts.Email = Console.ReadLine();
-                    Console.WriteLine("Record Updated successfully..");
+                    Console.WriteLine("Record Updated successfully...");
                     checkContacts = true;
                 }
             }
             if (checkContacts == false)
                 Console.WriteLine("Record not present");
         }
+        
+        public void DeleteContacts(List<Contacts> listContacts)
+        {
+            checkContacts = false;
+            Console.WriteLine("Enter first name");
+            firstName = Console.ReadLine();
+            foreach (Contacts contacts in listContacts)
+            {
+                if (contacts.FirstName.Equals(firstName))
+                {
+                    listContacts.Remove(contacts);
+                    Console.WriteLine("Record Deleted");
+                    checkContacts = true;
+                    break;
+                }
+            }
+            if (checkContacts == false)
+                Console.WriteLine("Record not found");
+        }
+       
         public void ShowAllRecords(List<Contacts> listContacts)
         {
             int count = 1;
@@ -55,7 +76,7 @@ namespace AddressBookSystem
             {
                 foreach (Contacts contacts1 in listContacts)
                 {
-                    Console.WriteLine("Contact Record :" + count);
+                    Console.WriteLine("...Contact Record :" + count + "...");
                     Console.WriteLine("First name :" + contacts1.FirstName);
                     Console.WriteLine("Last name :" + contacts1.LastName);
                     Console.WriteLine("Address :" + contacts1.Address);
@@ -64,12 +85,12 @@ namespace AddressBookSystem
                     Console.WriteLine("Zip :" + contacts1.Zip);
                     Console.WriteLine("Phone Number :" + PhoneNumber);
                     Console.WriteLine("Email :" + contacts1.Email);
+                    Console.WriteLine();
                     count++;
                 }
             }
             else
                 Console.WriteLine("Contacts record is empty");
         }
-
     }
 }
