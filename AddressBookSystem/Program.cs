@@ -12,23 +12,28 @@ namespace AddressBookSystem
             int zip, userChoice;
             long phoneNumber;
             List<Contacts> listContacts = new List<Contacts>();
+          
+            const int EXIT = 0, ADD_NEW_CONTACTS = 1, EDIT_CONTACTS = 2, ALL_CONTACTS = 3;
 
             while (true)
             {
-                Console.WriteLine("Press 1 : Add new contacts to Address Book");
-                Console.WriteLine("Press 0 : to Stop Execution");
+                Console.WriteLine("Press 1 to Add new contacts to Address Book");
+                Console.WriteLine("Press 2 to Edit existing contact");
+                Console.WriteLine("Press 3 to Show all contacts");
+                Console.WriteLine("Press 0 to to Stop Execution");
                 Console.WriteLine("Enter your choice");
                 userChoice = Convert.ToInt32(Console.ReadLine());
-                if (userChoice == 0)
+                if (userChoice == EXIT)
                     break;
+
                 switch (userChoice)
                 {
-                    case 1:
+                    case ADD_NEW_CONTACTS:
                         GetUserData();
                         Contacts contacts = new Contacts()
                         {
                             FirstName = firstName,
-                            Lastname = lastName,
+                            LastName = lastName,
                             Address = address,
                             City = city,
                             State = state,
@@ -38,15 +43,21 @@ namespace AddressBookSystem
                         };
                         listContacts.Add(contacts);
                         break;
+                    case EDIT_CONTACTS:
+                        Contacts contact = new Contacts();
+                        contact.CheckContactAvailable(listContacts);
+                        break;
+                    case ALL_CONTACTS:
+                        Contacts contactAllRecord = new Contacts();
+                        contactAllRecord.ShowAllRecords(listContacts);
+                        break;
+                    default:
+                        Console.WriteLine("Enter a right choice");
+                        break;
 
 
                 }
             }
-            foreach (Contacts contacts1 in listContacts)
-            {
-                Console.WriteLine("Contact Created With First name :" + contacts1.FirstName);
-            }
-
             void GetUserData()
             {
                 Console.WriteLine("Enter First Name");
@@ -66,7 +77,6 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter email");
                 email = Console.ReadLine();
             }
-
         }
     }
 }
