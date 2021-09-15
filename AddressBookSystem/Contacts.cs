@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+
 
 namespace Address_Book_System
 {
@@ -85,9 +87,10 @@ namespace Address_Book_System
                 Console.WriteLine("Fill record of person :" + (count + 1));
                 Console.WriteLine("Enter First Name");
                 contacts.FirstName = Console.ReadLine();
-                if (contactsUniqueList.ContainsKey(contacts.FirstName))
+                var personNameData = contactsUniqueList.Where(x => x.Key.Contains(contacts.FirstName));
+                if (personNameData.ToList().Count != 0)
                 {
-                    Console.WriteLine("This name is already present try with other name...");
+                    Console.WriteLine("............This name is already present try with other name...........");
                     count = (count - 1);
                 }
                 else
