@@ -146,5 +146,32 @@ namespace Address_Book_System
             else
                 Console.WriteLine("Contacts record is empty");
         }
+        /// <summary>
+        /// Display person name according to specific city or state
+        /// </summary>
+        /// <param name="contactsUniqueList"></param>
+        public void DisplayPersonName(Dictionary<string, List<Contacts>> contactsUniqueList)
+        {
+            if (contactsUniqueList.Count > 0)
+            {
+                Console.WriteLine("Enter City or State Name to search person");
+                string searchCityOrState = Console.ReadLine();
+                List<Contacts> listPerson = null;
+                foreach (KeyValuePair<string, List<Contacts>> contacts1 in contactsUniqueList)
+                {
+                    listPerson = contacts1.Value;
+                }
+                var filterPerson = listPerson.Where(x => x.City.Equals(searchCityOrState) || x.State.Equals(searchCityOrState));
+                Console.WriteLine(".......Person Name in City or State name is :" + searchCityOrState + ".......");
+                foreach (var personName in filterPerson)
+                {
+                    Console.WriteLine("Person Name : " + personName.FirstName);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Record is empty................");
+            }
+        }
     }
 }

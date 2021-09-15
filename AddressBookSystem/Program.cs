@@ -14,7 +14,7 @@ namespace Address_Book_System
             int zip, userChoice;
             long phoneNumber;
             //constants
-            const int EXIT = 0, ADD_NEW_CONTACTS = 1, EDIT_CONTACTS = 2, DELETE_CONTACTS = 3, ALL_CONTACTS = 5, ADD_MULTIPLE_RECORDS = 4;
+            const int EXIT = 0, ADD_NEW_CONTACTS = 1, EDIT_CONTACTS = 2, DELETE_CONTACTS = 3, ALL_CONTACTS = 4, ADD_MULTIPLE_RECORDS = 5, DISPLAY_PERSON = 6;
             List<Contacts> listContacts = new List<Contacts>();
             Dictionary<string, List<Contacts>> contactsUniqueList = new Dictionary<string, List<Contacts>>();
             while (true)
@@ -22,8 +22,9 @@ namespace Address_Book_System
                 Console.WriteLine("Press 1 : Add new contacts to Address Book");
                 Console.WriteLine("Press 2 : Edit existing contact");
                 Console.WriteLine("Press 3 : Delete contact");
-                Console.WriteLine("Press 4 : Add multiple records to Address Book");
-                Console.WriteLine("Press 5 : Show all contacts");
+                Console.WriteLine("Press 4 : Show all contacts");
+                Console.WriteLine("Press 5 : Add multiple records to Address Book");
+                Console.WriteLine("Press 6 : Display Person in city or state");
                 Console.WriteLine("Press 0 : to Stop Execution");
                 Console.WriteLine("Enter your choice");
                 userChoice = Convert.ToInt32(Console.ReadLine());
@@ -49,6 +50,10 @@ namespace Address_Book_System
                     case ADD_MULTIPLE_RECORDS:
                         Contacts contactAddMulRecords = new Contacts();
                         contactAddMulRecords.AddMultiplePerson(contactsUniqueList);
+                        break;
+                    case DISPLAY_PERSON:
+                        Contacts contactSearchPerson = new Contacts();
+                        contactSearchPerson.DisplayPersonName(contactsUniqueList);
                         break;
                     default:
                         Console.WriteLine("Enter a right choice");
