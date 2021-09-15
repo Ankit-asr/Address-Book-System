@@ -202,5 +202,34 @@ namespace Address_Book_System
                 Console.WriteLine("Record is empty................");
             }
         }
+        /// <summary>
+        /// Sort Contacts alphabetically by person name
+        /// </summary>
+        /// <param name="contactsUiqueList"></param>
+        public void SortRecordByPersonName(Dictionary<string, List<Contacts>> contactsUiqueList)
+        {
+            int count = 1;
+            if (contactsUiqueList.Count > 0)
+            {
+                Console.WriteLine(".............Record Sorted by Person Name..............");
+                foreach (KeyValuePair<string, List<Contacts>> contacts1 in contactsUiqueList.OrderBy(key => key.Key))
+                {
+                    foreach (Contacts contacts in contacts1.Value)
+                    {
+                        Console.WriteLine("........Contact Record :" + count + ".........");
+                        Console.WriteLine(contacts.ToString());
+                        count++;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Record is empty................");
+            }
+        }
+        public override string ToString()
+        {
+            return " First Name : " + this.FirstName + " \n Last Name : " + this.LastName + " \n Address : " + this.Address + "\n City : " + this.City + "\n State : " + this.State + "\n Zip : " + this.Zip + "\n PhoneNumber : " + this.PhoneNumber + "\n Email : " + this.Email;
+        }
     }
 }

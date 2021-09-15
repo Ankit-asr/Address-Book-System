@@ -14,7 +14,7 @@ namespace Address_Book_System
             int zip, userChoice;
             long phoneNumber;
             //constants
-            const int EXIT = 0, ADD_NEW_CONTACTS = 1, EDIT_CONTACTS = 2, DELETE_CONTACTS = 3, ALL_CONTACTS = 4, ADD_MULTIPLE_RECORDS = 5, DISPLAY_PERSON = 6, COUNT_PERSONS = 7;
+            const int EXIT = 0, ADD_NEW_CONTACTS = 1, EDIT_CONTACTS = 2, DELETE_CONTACTS = 3, ALL_CONTACTS = 5, ADD_MULTIPLE_RECORDS = 4, DISPLAY_PERSON = 6, COUNT_PERSONS = 7, SORT_PERSON_NAME = 8;
             List<Contacts> listContacts = new List<Contacts>();
             Dictionary<string, List<Contacts>> contactsUniqueList = new Dictionary<string, List<Contacts>>();
             while (true)
@@ -26,6 +26,7 @@ namespace Address_Book_System
                 Console.WriteLine("Press 5 : Add multiple records to Address Book");
                 Console.WriteLine("Press 6 : Display Person in city or state");
                 Console.WriteLine("Press 7 : Get number of contact persons count by state or city");
+                Console.WriteLine("Press 8 : Sort entries by Person's name");
                 Console.WriteLine("Press 0 : to Stop Execution");
                 Console.WriteLine("Enter your choice");
                 userChoice = Convert.ToInt32(Console.ReadLine());
@@ -59,6 +60,10 @@ namespace Address_Book_System
                     case COUNT_PERSONS:
                         Contacts contactCountPerson = new Contacts();
                         contactCountPerson.DisplayCountOfPersons(contactsUniqueList);
+                        break;
+                    case SORT_PERSON_NAME:
+                        Contacts contactSortPersonName = new Contacts();
+                        contactSortPersonName.SortRecordByPersonName(contactsUniqueList);
                         break;
                     default:
                         Console.WriteLine("Enter a right choice");
