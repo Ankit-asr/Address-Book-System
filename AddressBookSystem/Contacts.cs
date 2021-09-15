@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-
+using System.IO;
 
 namespace Address_Book_System
 {
@@ -227,6 +227,90 @@ namespace Address_Book_System
                 Console.WriteLine("Record is empty................");
             }
         }
+        /// <summary>
+        /// Write data to text file
+        /// </summary>
+        /// <param name="contactsUiqueList"></param>
+        /// <param name="filePath"></param>
+        public void ContactsWriteInTextFile(Dictionary<string, List<Contacts>> contactsUiqueList, string filePath)
+        {
+            int count = 1;
+            if (contactsUiqueList.Count > 0)
+            {
+                using (StreamWriter streamWriter = new StreamWriter(filePath))
+                {
+                    Console.WriteLine("........Writing data to text file..........");
+                    foreach (KeyValuePair<string, List<Contacts>> contacts1 in contactsUiqueList)
+                    {
+                        foreach (Contacts contacts in contacts1.Value)
+                        {
+                            streamWriter.WriteLine("........Contact Record " + count + ".........");
+                            streamWriter.WriteLine("First name :" + contacts.FirstName);
+                            streamWriter.WriteLine("Last name :" + contacts.LastName);
+                            streamWriter.WriteLine("Address :" + contacts.Address);
+                            streamWriter.WriteLine("City :" + contacts.City);
+                            streamWriter.WriteLine("State :" + contacts.State);
+                            streamWriter.WriteLine("Zip :" + contacts.Zip);
+                            streamWriter.WriteLine("Phone Number :" + contacts.PhoneNumber);
+                            streamWriter.WriteLine("Email :" + contacts.Email);
+                            count++;
+                        }
+                    }
+                    streamWriter.Close();
+                }
+                Console.WriteLine("............Record Added Successfully.............");
+            }
+            else
+            {
+                Console.WriteLine("Record is empty................");
+            }
+        }
+        /// <summary>
+        /// Reading text file data and display on console
+        /// </summary>
+        /// <param name="filePath"></param>
+        public void ReadTextFileData(string filePath)
+        {
+            Console.WriteLine("...........Data of Text File is ............");
+            using (StreamReader file = new StreamReader(filePath))
+            {
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
+            }
+        }
+        public void SortData(Dictionary<string, List<Contacts>> contactsUniqueList)
+        {
+            List<Contacts> listData = new List<Contacts>();
+            foreach (var list in contactsUniqueList)
+            {
+                foreach (var item in list.Value)
+                {
+                    listData.Add(item);
+                }
+            }
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("\nDisplaying the list based on zipcode");
+            foreach (var item in listData.OrderBy(detail => detail.Zip))
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("\nDisplaying the list based on state");
+            foreach (var item in listData.OrderBy(detail => detail.State))
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("\nDisplaying the list based on city");
+            foreach (var item in listData.OrderBy(detail => detail.City))
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+
         public override string ToString()
         {
             return " First Name : " + this.FirstName + " \n Last Name : " + this.LastName + " \n Address : " + this.Address + "\n City : " + this.City + "\n State : " + this.State + "\n Zip : " + this.Zip + "\n PhoneNumber : " + this.PhoneNumber + "\n Email : " + this.Email;

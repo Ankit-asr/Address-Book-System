@@ -1,0 +1,27 @@
+﻿Contact Record 1
+First name :Ankit
+Last name :Singh
+Address :26/15 Kha Wazir Hasan Road
+City :Lucknow
+State :Uttar Pradesh
+Zip :226001
+Phone Number :9696992265
+Email :asinghrathore@gmail.com
+Contact Record 2
+First name :Karan
+Last name :Singh
+Address :Indiranagar
+City :Bengaluru
+State :Karnataka
+Zip :400145
+Phone Number :9450145126
+Email :karan@gmail.com
+Contact Record 3
+First name :Gunjan
+Last name :Sharma
+Address :Park Street
+City :Mysore
+State :Karnataka
+Zip :400152
+Phone Number :9450125486
+Email :gunjan@gmail.com
